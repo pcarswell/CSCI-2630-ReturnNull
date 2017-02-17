@@ -1,9 +1,25 @@
 ﻿@model EDeviceClaims.WebUi.Models.DeviceListViewModel
 
+<div>
+    <table border="1">
+        <tr>
+            <td>Device</td>
+            <td>Serial Number</td>
+        </tr>
+        @foreach (var thing in Model)
+        {
 
-<ul>
-  @foreach (var thing in Model)
-  {
-    <li>@thing.Name -> @thing.SerialNumber</li>
-  }
-</ul>
+            <tr>
+                <td>
+                    @thing.Name
+                </td>
+                <td>
+                    @thing.SerialNumber
+                </td>
+            </tr>
+
+
+        }
+
+    </table>
+</div>
