@@ -7,9 +7,9 @@ namespace EDeviceClaims.WebUi.Models
   {
     public DeviceListViewModel(IEnumerable<PolicyDomainModel> domainModel)
     {
-      foreach (var thing in domainModel)
+      foreach (var device in domainModel)
       {
-        Add(new DeviceViewModel(thing));
+        Add(new DeviceViewModel(device));
       }
     }
   }

@@ -5,12 +5,12 @@ namespace EDeviceClaims.WebUi.Models
 {
   public class DeviceViewModel
   {
-    public DeviceViewModel(PolicyDomainModel thing)
+    public DeviceViewModel(PolicyDomainModel device)
     {
-      PolicyId = thing.Id;
-      PolicyNumber = thing.Number;
-      SerialNumber = thing.SerialNumber;
-      Name = thing.DeviceName;
+      PolicyId = device.Id;
+      PolicyNumber = device.Number;
+      SerialNumber = device.SerialNumber;
+      Name = device.DeviceName;
     }
 
     public string Name { get; set; }
