@@ -355,7 +355,7 @@ namespace EDeviceClaims.WebUi.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Manage");
+                return RedirectToAction("AccountIndexAfterLogin", "Manage");
             }
 
             if (ModelState.IsValid)
