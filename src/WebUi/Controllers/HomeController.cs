@@ -22,12 +22,5 @@ namespace EDeviceClaims.WebUi.Controllers
 
       return View();
     }
-    
-    public ActionResult AccountIndexAfterLogin()
-        {
-            ViewBag.Message = "You new index Page";
-
-            return View();
-        }
   }
 }
