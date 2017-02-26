@@ -9,8 +9,8 @@
     
     
    <!--Local CSS-->
-    <style>        
-         body {background: radial-gradient(circle, lightblue, white);} /*Does not work with Internet Explorer or Opera*/
+    <style type="text/css">        
+        body {background: radial-gradient(circle, lightblue, white);} /*Does not work with Internet Explorer or Opera*/
     </style>
 
 </head>
@@ -43,7 +43,7 @@
     </div>
 <div class="container body-content">
     @RenderBody()
-<!---<hr/>
+<!--- This is a Problem, It needs to be anchored down<hr/>
 <footer>
     <p>&copy; @DateTime.Now.Year - CSCC E-Device Claims</p>
 </footer>
