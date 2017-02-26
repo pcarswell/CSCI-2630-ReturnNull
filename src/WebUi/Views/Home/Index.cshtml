@@ -1,16 +1,36 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-<div class="jumbotron">
-    <h1>Hello!</h1>
-    <p class="lead">Welcome alien vistors! Hit the big button to login or register!</p>
-    <p>The footer below contains links related to Columbus State Community College...</p>
+<style>
+    .Thisjumbotron {
+
+  /*background-image: url(images/image.jpg); I would like to add this image as the jumbotron's background'*/ 
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  transform: translate(-50%, -50%);/*Does not work with Internet Explorer or Opera*/
+  padding: 100px;
+  font-size: 21px;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: #eeeeee;
+  border-width: 5px;
+  border-style: solid;
+}
+</style>
+
+<div class="Thisjumbotron">
     @if (Request.IsAuthenticated)
     {
+        <h1>Hello! Hit the big button to view your devices!</h1> <br/>
         @Html.ActionLink("View Devices", "Index", "Device", routeValues: null, htmlAttributes: new { Class = "btn btn-primary btn-lg" })
     }
     else
     {
+        <h1>Hello! Hit the big button to login!</h1> <br/>
         @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @Class = "btn btn-primary btn-lg" })
     }
-</div>
+</div>.
