@@ -1,65 +1,46 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-@if (!User.Identity.IsAuthenticated)
-{
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a>
-        </p>
-    </div>
+<style>
+    .thisJumbotron {
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a>
-            </p>
-        </div>
-    </div>
+  background: url(/Content/Images/image.jpg); /* Moved to Content folder to get around a security configuration. ---JDM */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  display: block;
+  position: fixed;
+  height: 50%;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  transform: translate(-50%, -50%);/*Does not work with Internet Explorer or Opera*/ 
+  /* A few of these talk about Vers. 8.0 being incompatible (according to Resharper)...I think we're fine cuz not even MS pushes IE anymore. --JDM */
+  padding: 100px;
+  font-size: 21px;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: #eeeeee;
+  border-width: 5px;
+  border-style: solid;
+}
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>College Resources</h2>
-            <a href="http://www.cscc.edu/"target="_blank">Columbus State Community College</a> <br/>
-            <a href="https://courses.cscc.edu/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_12_1" target="_blank">Blackboard</a> <br/>
-            <a href="https://cougarweb.cscc.edu/WebAdvisor/WebAdvisor?TYPE=M&PID=CORE-WBMAIN&TOKENIDX=6849906064" target="_blank">Cougarweb</a> <br/>
-            <a href="http://www.cscc.edu/services/itsc/" target="_blank">IT Support Center (ITSC)</a> <br/>
-            <a href="https://login.cscc.ohionet.org/login?url=http://proquest.safaribooksonline.com/" target="_blank">Columbus State Library Off-Campus Access</a><br/>
-        </div>
-        <div class="col-md-4">
-            <h2>Education Resources</h2>
-            <a href="https://www.w3schools.com/" target="_blank">W3Schools</a> <br/>
-            <a href="https://github.com/" target="_blank">GitHub</a>
-            <a href="https://www.atlassian.com/git/tutorials/comparing-workflows#centralized-workflow" target="_blank"> (How GitHub Works)</a> <br/>
-            <a href="https://msdn.microsoft.com/en-us/library/dd381412(v=vs.108).aspx" target="_blank">ASP.NET Overview</a>
-        </div>
-        <div class="col-md-4">
-            <h2>Faculty / Contacts</h2>
-            <p>Jorge Vallejos, 614-287-2554, jvallejo@cscc.edu</p> <br/>
-            <p>Peter Carswell, 614-287-5173, pcarswel@cscc.edu</p> <br/>
-            <a href="https://www.google.com/" target="_blank">Ask A Question?</a> <br/>
-        </div>
-    </div>
-}
-else
-{
-    
-}
+</style>
+
+<div class="thisJumbotron">
+
+    @if (Request.IsAuthenticated)
+    {
+        <h1>Hello! Hit the big button to view your devices!</h1>
+        <br/>
+        @Html.ActionLink("View Devices", "Index", "Device", routeValues: null, htmlAttributes: new {Class = "btn btn-primary btn-lg"})
+    }
+    else
+    {
+        <h1>Hello! Hit the big button to login!</h1>
+        <br/>
+        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink", @Class = "btn btn-primary btn-lg"})
+    }
+</div>.
