@@ -9,6 +9,7 @@
             <th>@Html.Label("Device")</th>
             <th>@Html.Label("Serial Number")</th>
             <th>@Html.Label("Policy")</th>
+            <th>@Html.Label("Details")</th>
         </tr>
 
         @foreach (var device in Model)
@@ -17,6 +18,7 @@
                 <td>@Html.DisplayFor(modelItem => device.Name)</td>
                 <td>@Html.DisplayFor(modelItem => device.SerialNumber)</td>
                 <td>@Html.DisplayFor(modelItem => device.PolicyNumber)</td>
+                <td>@Html.ActionLink("View", "Details", "Device", routeValues: new { policyId = device.PolicyId}, htmlAttributes: new { Class = "btn btn-primary btn-lg" })</td>
             </tr>
         }
     </table>

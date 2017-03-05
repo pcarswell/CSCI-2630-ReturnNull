@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\PolicyDomainModel.cs" />
-    <Compile Include="Services\Class1.cs" />
+    <Compile Include="Services\PolicyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
