@@ -40,7 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PolicyInteractor.cs" />
+    <Compile Include="GetClaimInteractor.cs" />
+    <Compile Include="GetPolicyInteractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

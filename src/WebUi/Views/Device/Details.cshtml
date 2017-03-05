@@ -1,7 +1,7 @@
 ﻿@model EDeviceClaims.WebUi.Models.DeviceViewModel
 
 
-<h2>@Model.Name Details</h2>
+<h2 style="text-align: center;">@Model.Name Details</h2>
 
 <div>
 
@@ -19,13 +19,30 @@
             <td>@Model.PolicyNumber</td>
         </tr>
     </table>
+</div>
+
+<div style="text-align: center; padding-top: 25px;">
+    
+    @if(Model.PendingClaim)
+    {
+        @Html.ActionLink("View Claim", "Details", "Claim", routeValues: new { policyId = Model.PolicyId }, 
+       htmlAttributes: new { Class = "btn btn-warning btn-lg" })
+    }
+    else
+    {
+        @Html.ActionLink("Open Claim", "Open", "Claim", routeValues: new { policyId = Model.PolicyId },
+    htmlAttributes: new { Class = "btn btn-danger btn-lg" })
+    }
+    
+    
+    
 
 </div>
 
 <style>
     table#deviceListTable {
         margin: auto;
-        width: 75%;
+        width: 25%;
         background-color: #f1f1c1;
         text-align: center;
     }
@@ -41,7 +58,7 @@
         table#deviceListTable th {
             color: black;
             background-color: gray;
-            text-align: center;
+            text-align: left;
         }
 
     table, th, td {
