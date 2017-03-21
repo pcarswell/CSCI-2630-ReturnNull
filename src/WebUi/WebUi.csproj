@@ -242,6 +242,9 @@
     <Content Include="Views\Device\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Device\Details.cshtml" />
+    <Content Include="Views\Device\ViewClaim.cshtml" />
+    <Content Include="Views\Device\StartClaim.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

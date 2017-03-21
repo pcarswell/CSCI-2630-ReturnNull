@@ -18,5 +18,21 @@ namespace EDeviceClaims.WebUi.Controllers
 
       return View(model);
     }
+
+      public ActionResult Details()
+      {
+          return View();
+      }
+
+      public ActionResult StartClaim()
+      {
+          return View();
+      }
+
+      public ActionResult ViewClaim()
+      {
+          return View();
+      }
+
   }
 }
