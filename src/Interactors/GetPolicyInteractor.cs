@@ -23,6 +23,7 @@ namespace EDeviceClaims.Interactors
       get { return _repo ?? (_repo = new PolicyRepository()); }
       set { _repo = value; }
     }
+
     private IPolicyRepository _repo;
 
 

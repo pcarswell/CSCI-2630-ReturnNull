@@ -1,31 +1,46 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<style>
+    .thisJumbotron {
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+  background: url(/Content/Images/image.jpg); /* Moved to Content folder to get around a security configuration. ---JDM */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  display: block;
+  position: fixed;
+  height: 50%;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  transform: translate(-50%, -50%);/*Does not work with Internet Explorer or Opera*/ 
+  /* A few of these talk about Vers. 8.0 being incompatible (according to Resharper)...I think we're fine cuz not even MS pushes IE anymore. --JDM */
+  padding: 100px;
+  font-size: 21px;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: #eeeeee;
+  border-width: 5px;
+  border-style: solid;
+}
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+</style>
+
+<div class="thisJumbotron">
+
+    @if (Request.IsAuthenticated)
+    {
+        <h1>Hello! Hit the big button to view your devices!</h1>
+        <br/>
+        @Html.ActionLink("View Devices", "Index", "Device", routeValues: null, htmlAttributes: new {Class = "btn btn-primary btn-lg"})
+    }
+    else
+    {
+        <h1>Hello! Hit the big button to login!</h1>
+        <br/>
+        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink", @Class = "btn btn-primary btn-lg"})
+    }
+</div>.
