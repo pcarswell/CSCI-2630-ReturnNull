@@ -25,6 +25,14 @@ namespace EDeviceClaims.Domain.Services
             set { _getPolicyInteractor = value; }
         }
 
+        //private IUpdatePolicyInteractor _updatePolicyInteractor;
+
+        //private IUpdatePolicyInteractor UpdatePolicyInteractor
+        //{
+        //    get { return _updatePolicyInteractor ?? (_updatePolicyInteractor = new UpdatePolicyInteractor()); }
+        //    set { _updatePolicyInteractor = value; }
+        //}
+
         private IGetUserInteractor _getUserInteractor;
 
         private IGetUserInteractor GetUserInteractor
@@ -64,8 +72,14 @@ namespace EDeviceClaims.Domain.Services
             foreach (var device in devices)
             {
                 device.UserId = user.Id;
+                GetPolicyInteractor.UpdatePolicy();
             }
-            GetPolicyInteractor.Repo.EfUnitOfWork.Context.SaveChanges();
+
+            
+
+            //GetPolicyInteractor.Repo.EfUnitOfWork.Context.SaveChanges();
+
+            //UpdatePolicyInteractor.UpdatePolicy();
         }
     }
 

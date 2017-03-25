@@ -10,17 +10,17 @@ namespace EDeviceClaims.Interactors
     public interface IGetPolicyInteractor
 
     {
-        IPolicyRepository Repo { get; set; }
         Policy GetById(Guid id);
         Policy GetByNumber(string number);
         ICollection<Policy> GetByCustomerEmailAdress(string email);
         ICollection<Policy> GetByUserId(string userId);
+        void UpdatePolicy();
     }
 
     public class GetPolicyInteractor : IGetPolicyInteractor
     {
 
-        public IPolicyRepository Repo
+        private IPolicyRepository Repo
         {
             get { return _repo ?? (_repo = new PolicyRepository()); }
             set { _repo = value; }
@@ -54,6 +54,13 @@ namespace EDeviceClaims.Interactors
         public ICollection<Policy> GetByUserId(string userId)
         {
             return Repo.GetByUserId(userId);
+        }
+
+        // moved to this interactor for implementation hiding...pretty sure this needs it's own interactor, BUT.
+        // this way all repositories and classes can stay private and hidden
+        public void UpdatePolicy()
+        {
+            Repo.EfUnitOfWork.Context.SaveChanges();
         }
     }
 
