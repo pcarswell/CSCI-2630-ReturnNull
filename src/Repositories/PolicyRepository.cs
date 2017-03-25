@@ -9,6 +9,7 @@ namespace EDeviceClaims.Repositories
   {
     Policy GetByPolicyNumber(string number);
     ICollection<Policy> GetByUserId(string userId);
+      ICollection<Policy> GetByEmailAddress(string email);
   }
 
   public class PolicyRepository : EfRepository<Policy, Guid>, IPolicyRepository
@@ -29,5 +30,10 @@ namespace EDeviceClaims.Repositories
     {
       return ObjectSet.Where(p => p.UserId == userId).ToList();
     }
+
+      public ICollection<Policy> GetByEmailAddress(string email)
+      {
+          return ObjectSet.Where(p => p.CustomerEmail == email).ToList();
+      }
   }
 }

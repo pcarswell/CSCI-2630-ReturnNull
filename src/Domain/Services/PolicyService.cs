@@ -54,11 +54,11 @@ namespace EDeviceClaims.Domain.Services
         public void AssociateExistingDevices(string userId)
         {
             //get user
-            var user = _getUserInteractor.GetById(userId);
+            var user = GetUserInteractor.GetById(userId);
             if (user==null)
                 throw new Exception();
             //get device for email add
-            var devices = _getPolicyInteractor.GetByCustomerEmailAdress(user.Id);
+            var devices = GetPolicyInteractor.GetByCustomerEmailAdress(user.Email);
 
             //update device with userid
             foreach (var device in devices)
