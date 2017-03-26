@@ -30,7 +30,7 @@ namespace EDeviceClaims.Interactors
 
         public AuthorizedUser GetById(string userId)
         {
-            throw new NotImplementedException();
+            return Repo.GetById(userId);
         }
     }
 }

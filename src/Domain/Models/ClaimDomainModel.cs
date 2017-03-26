@@ -1,4 +1,4 @@
-﻿namespace EDeviceClaims.Domain.Services
+﻿namespace EDeviceClaims.Domain.Models
 {
     public class ClaimDomainModel
     {
