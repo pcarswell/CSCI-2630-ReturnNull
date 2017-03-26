@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using EDeviceClaims.Entities;
 using EDeviceClaims.Repositories;
 
-// Work in progress, not connected to anything
 
 namespace EDeviceClaims.Interactors
 {
@@ -33,9 +32,9 @@ namespace EDeviceClaims.Interactors
             foreach (var device in devices)
             {
                 device.UserId = user.Id;
+                Repo.Update(device);
             }
-
-            Repo.EfUnitOfWork.Context.SaveChanges();
+            
         }
         
     }

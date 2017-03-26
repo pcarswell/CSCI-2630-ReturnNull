@@ -70,19 +70,9 @@ namespace EDeviceClaims.Domain.Services
             var devices = GetPolicyInteractor.GetByCustomerEmailAdress(user.Email);
 
             //update device with userid
-            foreach (var device in devices)
-            {
-                device.UserId = user.Id;
-            }
 
-            GetPolicyInteractor.UpdatePolicy();
-
-            //UpdatePolicyInteractor.UpdatePolicyUserId(user, devices);
-
-
-            //GetPolicyInteractor.Repo.EfUnitOfWork.Context.SaveChanges();
-
-            //UpdatePolicyInteractor.UpdatePolicyUserId();
+            UpdatePolicyInteractor.UpdatePolicyUserId(user, devices);
+            
         }
     }
 
