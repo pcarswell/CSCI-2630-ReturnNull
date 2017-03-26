@@ -25,13 +25,13 @@ namespace EDeviceClaims.Domain.Services
             set { _getPolicyInteractor = value; }
         }
 
-        //private IUpdatePolicyInteractor _updatePolicyInteractor;
+        private IUpdatePolicyInteractor _updatePolicyInteractor;
 
-        //private IUpdatePolicyInteractor UpdatePolicyInteractor
-        //{
-        //    get { return _updatePolicyInteractor ?? (_updatePolicyInteractor = new UpdatePolicyInteractor()); }
-        //    set { _updatePolicyInteractor = value; }
-        //}
+        private IUpdatePolicyInteractor UpdatePolicyInteractor
+        {
+            get { return _updatePolicyInteractor ?? (_updatePolicyInteractor = new UpdatePolicyInteractor()); }
+            set { _updatePolicyInteractor = value; }
+        }
 
         private IGetUserInteractor _getUserInteractor;
 
@@ -65,6 +65,7 @@ namespace EDeviceClaims.Domain.Services
             var user = GetUserInteractor.GetById(userId);
             if (user==null)
                 throw new Exception();
+
             //get device for email add
             var devices = GetPolicyInteractor.GetByCustomerEmailAdress(user.Email);
 
@@ -72,14 +73,16 @@ namespace EDeviceClaims.Domain.Services
             foreach (var device in devices)
             {
                 device.UserId = user.Id;
-                GetPolicyInteractor.UpdatePolicy();
             }
 
-            
+            GetPolicyInteractor.UpdatePolicy();
+
+            //UpdatePolicyInteractor.UpdatePolicyUserId(user, devices);
+
 
             //GetPolicyInteractor.Repo.EfUnitOfWork.Context.SaveChanges();
 
-            //UpdatePolicyInteractor.UpdatePolicy();
+            //UpdatePolicyInteractor.UpdatePolicyUserId();
         }
     }
 

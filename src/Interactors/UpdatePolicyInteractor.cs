@@ -12,39 +12,30 @@ namespace EDeviceClaims.Interactors
 {
     public interface IUpdatePolicyInteractor
     {
-        void UpdatePolicy(Policy policy);
+        void UpdatePolicyUserId(AuthorizedUser user, ICollection<Policy> devices);
     }
 
     public class UpdatePolicyInteractor : IUpdatePolicyInteractor
     {
+        private IPolicyRepository _repo;
+
         private IPolicyRepository Repo
         {
             get { return _repo ?? (_repo = new PolicyRepository()); }
             set { _repo = value; }
         }
-
-        private IPolicyRepository _repo;
         
-        private IGetPolicyInteractor GetPolicyInteractor
-        {
-            get { return _getPolicyInteractor ?? (_getPolicyInteractor = new GetPolicyInteractor()); }
-            set { _getPolicyInteractor = value; }
-        }
-
-        private IGetPolicyInteractor _getPolicyInteractor;
-
         public UpdatePolicyInteractor() { }
 
-        public UpdatePolicyInteractor(IGetPolicyInteractor getPolicyInteractor)
+        public void UpdatePolicyUserId(AuthorizedUser user, ICollection<Policy> devices)
         {
-            _getPolicyInteractor = getPolicyInteractor;
-        }
 
-        public void UpdatePolicy(Policy policy)
-        {
-            GetPolicyInteractor.GetById(policy.Id);
-            
-            Repo.SavePolicyChanges();
+            foreach (var device in devices)
+            {
+                device.UserId = user.Id;
+            }
+
+            Repo.EfUnitOfWork.Context.SaveChanges();
         }
         
     }
