@@ -58,11 +58,21 @@ namespace EDeviceClaims.Repositories.Migrations
         UserId = policyHolder.Id
       };
 
+            var p3 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "8675",
+                SerialNumber = "309",
+                DeviceName = "Windows",
+                CustomerEmail = "joe@personal.com"
+                
+            };
 
-      context.Policies.AddOrUpdate(
+            context.Policies.AddOrUpdate(
               p => p.Number,
               p1,
               p2,
+              p3,
               new Policy { Id = Guid.NewGuid(), Number = "11121", SerialNumber = "MNOPQ", DeviceName = "iPhone 6+", CustomerEmail = "d@b.com" },
               new Policy { Id = Guid.NewGuid(), Number = "31415", SerialNumber = "RSTUV", DeviceName = "iPhone 6+", CustomerEmail = "e@b.com" },
               new Policy { Id = Guid.NewGuid(), Number = "16171", SerialNumber = "WXYZA", DeviceName = "iPhone 6+", CustomerEmail = "f@b.com" },

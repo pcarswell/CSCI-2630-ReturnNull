@@ -8,7 +8,9 @@ using EDeviceClaims.Repositories.Migrations;
 namespace EDeviceClaims.Interactors
 {
   public interface IGetPolicyInteractor
+
   {
+        IPolicyRepository Repo { get; set; }
     Policy GetById(Guid id);
     Policy GetByNumber(string number);
     ICollection<Policy> GetByCustomerEmailAdress(string email);
@@ -18,7 +20,7 @@ namespace EDeviceClaims.Interactors
   public class GetPolicyInteractor : IGetPolicyInteractor
   {
 
-    private IPolicyRepository Repo
+    public IPolicyRepository Repo
     {
       get { return _repo ?? (_repo = new PolicyRepository()); }
       set { _repo = value; }
