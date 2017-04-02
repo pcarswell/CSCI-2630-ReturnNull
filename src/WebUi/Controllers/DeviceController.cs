@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EDeviceClaims.Domain.Services;
@@ -7,25 +6,33 @@ using EDeviceClaims.WebUi.Models;
 
 namespace EDeviceClaims.WebUi.Controllers
 {
-    [Authorize]
-    public class DeviceController : AppController
+  [Authorize]
+  public class DeviceController : AppController
+  {
+    private IPolicyService _policyService = new PolicyService();
+
+    public ActionResult Index()
     {
-        private IPolicyService _policyService = new PolicyService();
+      var domainModel = _policyService.GetByUserId(CurrentUserId);
+      var model = new DeviceListViewModel(domainModel);
 
-        public ActionResult Index()
-        {
-            var domainModel = _policyService.GetByUserId(CurrentUserId);
-            var model = new DeviceListViewModel(domainModel);
-
-            return View(model);
-        }
-
-        public ActionResult Details(Guid policyId)
-        {
-            var policyModel = _policyService.GetById(policyId);
-            var viewModel = new DeviceViewModel(policyModel);
-
-            return View(viewModel);
-        }
+      return View(model);
     }
+
+      public ActionResult Details()
+      {
+          return View();
+      }
+
+      public ActionResult StartClaim()
+      {
+          return View();
+      }
+
+      public ActionResult ViewClaim()
+      {
+          return View();
+      }
+
+  }
 }
