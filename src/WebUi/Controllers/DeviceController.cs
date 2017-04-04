@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EDeviceClaims.Domain.Services;
@@ -19,20 +20,13 @@ namespace EDeviceClaims.WebUi.Controllers
       return View(model);
     }
 
-      public ActionResult Details()
+      public ActionResult Details(Guid policyId)
       {
-          return View();
-      }
+            var policyModel = _policyService.GetById(policyId);
+            var viewModel = new DeviceViewModel(policyModel);
 
-      public ActionResult StartClaim()
-      {
-          return View();
-      }
-
-      public ActionResult ViewClaim()
-      {
-          return View();
-      }
+            return View(viewModel);
+        }
 
   }
 }
