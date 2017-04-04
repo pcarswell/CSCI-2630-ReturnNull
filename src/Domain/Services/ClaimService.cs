@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EDeviceClaims.Domain.Models;
 using EDeviceClaims.Interactors;
 
 namespace EDeviceClaims.Domain.Services
