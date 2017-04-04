@@ -5,12 +5,14 @@ using System.Linq;
 using EDeviceClaims.Domain.Models;
 using EDeviceClaims.Interactors;
 
+
 namespace EDeviceClaims.Domain.Services
 {
     public interface IPolicyService
     {
         IEnumerable<PolicyDomainModel> GetByUserId(string userId);
         PolicyDomainModel GetById(Guid policyId);
+        void AssociateExistingDevices(string userId);
     }
 
     public class PolicyService : IPolicyService
@@ -22,6 +24,23 @@ namespace EDeviceClaims.Domain.Services
             get { return _getPolicyInteractor ?? (_getPolicyInteractor = new GetPolicyInteractor()); }
             set { _getPolicyInteractor = value; }
         }
+
+        private IUpdatePolicyInteractor _updatePolicyInteractor;
+
+        private IUpdatePolicyInteractor UpdatePolicyInteractor
+        {
+            get { return _updatePolicyInteractor ?? (_updatePolicyInteractor = new UpdatePolicyInteractor()); }
+            set { _updatePolicyInteractor = value; }
+        }
+
+        private IGetUserInteractor _getUserInteractor;
+
+        private IGetUserInteractor GetUserInteractor
+        {
+            get { return _getUserInteractor ?? (_getUserInteractor = new GetUserInteractor()); }
+            set { _getUserInteractor = value; }
+        }
+
 
         public IEnumerable<PolicyDomainModel> GetByUserId(string userId)
         {
@@ -39,5 +58,23 @@ namespace EDeviceClaims.Domain.Services
             return new PolicyDomainModel(entity);
 
         }
+
+        public void AssociateExistingDevices(string userId)
+        {
+            //get user
+            var user = GetUserInteractor.GetById(userId);
+            if (user==null)
+                throw new Exception();
+
+            //get device for email add
+            var devices = GetPolicyInteractor.GetByCustomerEmailAdress(user.Email);
+
+            //update device with userid
+
+            UpdatePolicyInteractor.UpdatePolicyUserId(user, devices);
+            
+        }
     }
+
+   
 }

@@ -1,30 +1,12 @@
-﻿using System;
-using System.Web.Mvc;
-using EDeviceClaims.Domain.Services;
-using EDeviceClaims.WebUi.Models;
+﻿using System.Web.Mvc;
 
 namespace EDeviceClaims.WebUi.Controllers
 {
-    [Authorize]
-    public class ClaimController : AppController
+    public class ClaimController : Controller
     {
-        private IClaimService _claimService = new ClaimService();
-        
-        public ActionResult Open(Guid policyId)
+        public ActionResult StartClaim()
         {
-            var claimModel = _claimService.StartClaim(policyId);
-            var viewModel = new ClaimViewModel(claimModel);
-
-            return View("Open", viewModel);
-        }
-
-        public ActionResult Details(Guid policyId)
-        {
-
-            var claimModel = _claimService.ViewClaim(policyId);
-            var viewModel = new ClaimViewModel(claimModel);
-
-            return View("Details", viewModel);
+            throw new System.NotImplementedException();
         }
     }
 }
