@@ -6,22 +6,19 @@
     <title>@ViewBag.Title - CSCC E-Device Claims</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    
+    
+   <!--Local CSS-->
+    <style type="text/css">        
+        body {background: radial-gradient(circle, lightblue, white);} /*Does not work with Internet Explorer or Opera*/
 
+        .footer { position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        text-align: center;
+    }
 
-    <!--Local CSS-->
-    <style type="text/css">
-        body {
-            background: radial-gradient(circle, lightblue, white);
-        }
-        /*Does not work with Internet Explorer or Opera*/
-
-        .footer {
-            position: absolute;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            text-align: center;
-        }
     </style>
 
 </head>
@@ -37,25 +34,32 @@
                 @Html.ActionLink("CSCC E-Device Claims", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-
-                @Html.Partial("_NavBar")
-
+                <ul class="nav navbar-nav">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Devices", "Index", "Device")</li>
+                    }
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
+<div class="container body-content">
+    @RenderBody()
+    
+    <!-- Added local css class to keep at bottom & centered -->
+    <footer class="footer">
+        <p>&copy; @DateTime.Now.Year - Powered By ReturnNull</p>
+    </footer>
 
-        <!-- Added local css class to keep at bottom & centered -->
-        <footer class="footer">
-            <p>&copy; @DateTime.Now.Year - Powered By ReturnNull</p>
-        </footer>
-
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+</div>
+    
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
 </body>
 </html>
