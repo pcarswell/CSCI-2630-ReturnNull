@@ -16,7 +16,7 @@ namespace EDeviceClaims.Domain.Models
             Number = policyEntity.Number;
             SerialNumber = policyEntity.SerialNumber;
             DeviceName = policyEntity.DeviceName;
-            PendingClaim = true;
+            PendingClaim = false;
         }
 
         public Guid Id { get; set; }
