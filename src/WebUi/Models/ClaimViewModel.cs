@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using EDeviceClaims.Domain.Services;
+using EDeviceClaims.Domain.Models;
 
 namespace EDeviceClaims.WebUi.Models
 {
     public class ClaimViewModel
     {
-        public ClaimViewModel(ClaimDomainModel domainModel)
+        public Guid Id { get; set; }
+
+        public ClaimViewModel()
         {
             
+        }
+
+        public ClaimViewModel(ClaimDomainModel domainModel)
+        {
+            Id = domainModel.Id;
         }
     }
 }
