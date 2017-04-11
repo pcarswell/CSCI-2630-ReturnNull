@@ -1,43 +1,16 @@
-﻿@model EDeviceClaims.WebUi.Models.DeviceViewModel
+@model EDeviceClaims.WebUi.Models.DeviceViewModel
 
 
 <h2 style="text-align: center;">@Model.Name Details</h2>
-
-<div>
-
-    <table class="table" id="deviceListTable">
-        <tr>
-            <th>@Html.Label("Device")</th>
-            <td>@Model.Name</td>
-        </tr>
-        <tr>
-            <th>@Html.Label("Serial Number")</th>
-            <td>@Model.SerialNumber</td>
-        </tr>
-        <tr>
-            <th>@Html.Label("Policy")</th>
-            <td>@Model.PolicyNumber</td>
-        </tr>
-    </table>
-</div>
+@Html.Partial("_deviceDetailsTable",Model)
 
 <div style="text-align: center; padding-top: 25px;">
-    
-    @if(Model.PendingClaim)
-    {
-        @Html.ActionLink("View Claim", "Details", "Claim", routeValues: new { policyId = Model.PolicyId }, 
-       htmlAttributes: new { Class = "btn btn-warning btn-lg" })
-    }
-    else
-    {
-        @Html.ActionLink("Open Claim", "Open", "Claim", routeValues: new { policyId = Model.PolicyId },
-    htmlAttributes: new { Class = "btn btn-danger btn-lg" })
-    }
+    @Html.Partial("_claimButton", Model)
 
-    @Html.ActionLink("Back to Devices", "Index", "Device", routeValues: null, htmlAttributes: new { Class = "btn btn-danger btn-lg" })
-    
-    
-    
+    @Html.ActionLink("Back to Devices", "Index", "Device", routeValues: null, htmlAttributes: new {Class = "btn btn-danger btn-lg"})
+
+
+
 
 </div>
 
@@ -81,3 +54,20 @@
         padding: 15px;
     }
 </style> 
+     
+
+
+
+
+
+
+
+
+
+
+
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/device_details.js"></script>
+}

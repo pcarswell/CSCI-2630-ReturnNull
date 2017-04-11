@@ -18,6 +18,7 @@ namespace EDeviceClaims.WebUi.Controllers
             var model = new DeviceListViewModel(domainModel);
 
             return View(model);
+
         }
 
         public ActionResult Details(Guid policyId)

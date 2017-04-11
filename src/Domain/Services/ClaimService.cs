@@ -45,7 +45,7 @@ namespace EDeviceClaims.Domain.Services
 
             // currently returns empty model regardless
             // will eventually need to either return existing or new claim
-            return new ClaimDomainModel();
+            return new ClaimDomainModel(policyId);
         }
 
         public ClaimDomainModel ViewClaim(Guid policyId)
@@ -58,7 +58,7 @@ namespace EDeviceClaims.Domain.Services
 
             // returns new claim model regardless
             // will eventually need to return existing claim data or error handle
-            return new ClaimDomainModel();
+            return new ClaimDomainModel(policyId);
         }
     }
 }

@@ -245,8 +245,14 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Device\Details.cshtml" />
-    <Content Include="Views\Claim\Open.cshtml" />
+    <Content Include="Views\Claim\ViewClaim.cshtml" />
+    <Content Include="Views\Claim\StartClaim.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Device\_claimButton.cshtml" />
+    <Content Include="Views\Device\_deviceDetailsTable.cshtml" />
     <Content Include="Views\Claim\Details.cshtml" />
+    <Content Include="Views\Claim\Open.cshtml" />
+    <None Include="Views\Shared\_NavBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
