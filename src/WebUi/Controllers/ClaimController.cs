@@ -5,6 +5,7 @@ using EDeviceClaims.WebUi.Models;
 
 namespace EDeviceClaims.WebUi.Controllers
 {
+    [Authorize]
     public class ClaimController : AppController
     {
         private IClaimService _claimService = new ClaimService();

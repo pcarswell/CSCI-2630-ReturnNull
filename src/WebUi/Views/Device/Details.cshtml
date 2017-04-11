@@ -1,4 +1,3 @@
-﻿
 @model EDeviceClaims.WebUi.Models.DeviceViewModel
 
 
@@ -6,7 +5,6 @@
 @Html.Partial("_deviceDetailsTable",Model)
 
 <div style="text-align: center; padding-top: 25px;">
-
     @Html.Partial("_claimButton", Model)
 
     @Html.ActionLink("Back to Devices", "Index", "Device", routeValues: null, htmlAttributes: new {Class = "btn btn-danger btn-lg"})
@@ -73,4 +71,3 @@
 {
     <script type="text/javascript" src="~/Scripts/device_details.js"></script>
 }
-

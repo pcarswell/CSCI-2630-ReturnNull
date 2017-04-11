@@ -7,26 +7,26 @@ using EDeviceClaims.WebUi.Models;
 
 namespace EDeviceClaims.WebUi.Controllers
 {
-  [Authorize]
-  public class DeviceController : AppController
-  {
-    private IPolicyService _policyService = new PolicyService();
-
-    public ActionResult Index()
+    [Authorize]
+    public class DeviceController : AppController
     {
-      var domainModel = _policyService.GetByUserId(CurrentUserId);
-      var model = new DeviceListViewModel(domainModel);
+        private IPolicyService _policyService = new PolicyService();
 
-      return View(model);
-    }
+        public ActionResult Index()
+        {
+            var domainModel = _policyService.GetByUserId(CurrentUserId);
+            var model = new DeviceListViewModel(domainModel);
 
-      public ActionResult Details(Guid policyId)
-      {
+            return View(model);
+
+        }
+
+        public ActionResult Details(Guid policyId)
+        {
             var policyModel = _policyService.GetById(policyId);
             var viewModel = new DeviceViewModel(policyModel);
 
             return View(viewModel);
         }
-
-  }
+    }
 }
