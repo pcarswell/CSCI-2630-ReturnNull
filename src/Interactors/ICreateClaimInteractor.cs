@@ -8,31 +8,33 @@ using EDeviceClaims.Repositories;
 
 namespace EDeviceClaims.Interactors
 {
-    public interface IGetClaimInteractor
+    public interface ICreateClaimInteractor
     {
         ClaimEntity Execute(Guid id);
     }
 
-    public class GetClaimInteractor : IGetClaimInteractor
+    public class CreateClaimInteractor : ICreateClaimInteractor
     {
-        private IClaimRepository Repo
-        {
+        private IClaimRepository Repo {
             get { return _repo ?? (_repo = new ClaimRepository()); }
             set { _repo = value; }
         }
 
         private IClaimRepository _repo;
 
-        public GetClaimInteractor() { }
+        public CreateClaimInteractor() { }
 
-        public GetClaimInteractor(IClaimRepository claimRepo)
+        public CreateClaimInteractor(IClaimRepository claimRepo)
         {
             _repo = claimRepo;
         }
-
         public ClaimEntity Execute(Guid id)
         {
-            return Repo.GetById(id);
+
+            var newClaim = new ClaimEntity() {Id = Guid.NewGuid(), PolicyId = id};
+            newClaim = Repo.Create(newClaim);
+
+            return newClaim;
         }
     }
 }

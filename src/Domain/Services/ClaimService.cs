@@ -27,11 +27,20 @@ namespace EDeviceClaims.Domain.Services
 
         private IGetClaimInteractor _getClaimInteractor;
 
-        private IGetClaimInteractor GetClaimInteractor
+        public IGetClaimInteractor GetClaimInteractor
         {
             get { return _getClaimInteractor ?? (_getClaimInteractor = new GetClaimInteractor()); }
             set { _getClaimInteractor = value; }
         }
+
+        public ICreateClaimInteractor CreateClaimInteractor
+        {
+            get { return _createClaimInteractor ?? (_createClaimInteractor = new CreateClaimInteractor()); }
+            set { _createClaimInteractor = value; }
+            
+        }
+        private ICreateClaimInteractor _createClaimInteractor;
+
 
         public ClaimDomainModel StartClaim(Guid policyId)
         {
@@ -40,26 +49,20 @@ namespace EDeviceClaims.Domain.Services
             if (policy == null) throw new ArgumentException("There is no policy for that ID.");
 
             // Check for existing claim
-            var existingClaim = GetClaimInteractor.GetClaimById(policyId);
+            var existingClaim = CreateClaimInteractor.Execute(policyId);
 
             // TODO:Create new claim
 
             // currently returns empty model regardless
             // will eventually need to either return existing or new claim
-            return new ClaimDomainModel(policyId);
+            return new ClaimDomainModel(existingClaim);
         }
 
         public ClaimDomainModel ViewClaim(Guid policyId)
         {
-            var policy = GetPolicyInteractor.GetById(policyId);
-
-            if (policy == null) throw new ArgumentException("There is no policy for that ID.");
-
-            var existingClaim = GetClaimInteractor.GetClaimById(policyId);
-
-            // returns new claim model regardless
-            // will eventually need to return existing claim data or error handle
-            return new ClaimDomainModel(policyId);
+            var claim = GetClaimInteractor.Execute(policyId);
+            if(claim==null) throw new ArgumentException("This Cliam does not exist.");
+            return new ClaimDomainModel(claim);
         }
     }
 }
