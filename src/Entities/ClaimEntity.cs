@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EDeviceClaims.Entities
 {
-    [Table("claims", Schema = "app")]
+    [Table("claims", Schema = "App")]
     public class ClaimEntity : EntityBase<Guid>
     {
         public Guid PolicyId { get; set; }
