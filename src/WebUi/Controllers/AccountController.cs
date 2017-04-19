@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using EDeviceClaims.Domain.Services;
 using EDeviceClaims.Entities;
 using EDeviceClaims.WebUi.Models;
 using Microsoft.AspNet.Identity;
@@ -16,9 +17,11 @@ namespace EDeviceClaims.WebUi.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IPolicyService _policyService = new PolicyService();
 
         public AccountController()
         {
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -154,6 +157,8 @@ namespace EDeviceClaims.WebUi.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //associate 
+                    _policyService.AssociateExistingDevices(user.Id);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
