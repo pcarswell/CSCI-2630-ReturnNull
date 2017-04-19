@@ -1,5 +1,4 @@
 ﻿using System;
-using EDeviceClaims.Domain.Services;
 
 namespace EDeviceClaims.Domain.Models
 {

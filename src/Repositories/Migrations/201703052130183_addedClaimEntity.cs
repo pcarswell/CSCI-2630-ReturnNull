@@ -8,7 +8,7 @@ namespace EDeviceClaims.Repositories.Migrations
         public override void Up()
         {
             CreateTable(
-                "App.claims",
+                "app.claims",
                 c => new
                     {
                         Id = c.Guid(nullable: false),
@@ -24,9 +24,9 @@ namespace EDeviceClaims.Repositories.Migrations
         
         public override void Down()
         {
-            DropForeignKey("App.claims", "PolicyId", "app.policies");
-            DropIndex("App.claims", new[] { "PolicyId" });
-            DropTable("App.claims");
+            DropForeignKey("app.claims", "PolicyId", "app.policies");
+            DropIndex("app.claims", new[] { "PolicyId" });
+            DropTable("app.claims");
         }
     }
 }
