@@ -13,6 +13,7 @@ namespace EDeviceClaims.Domain.Services
     {
         ClaimDomainModel StartClaim(Guid policyId);
         ClaimDomainModel ViewClaim(Guid policyId);
+        ClaimDomainModel GetById(Guid id);
     }
 
     public class ClaimService : IClaimService
@@ -60,6 +61,13 @@ namespace EDeviceClaims.Domain.Services
             // returns new claim model regardless
             // will eventually need to return existing claim data or error handle
             return new ClaimDomainModel(policyId);
+        }
+
+        public ClaimDomainModel GetById(Guid id)
+        {
+            var claim = GetClaimInteractor.GetClaimById(id);
+
+            return new ClaimDomainModel(claim.Id);
         }
     }
 }

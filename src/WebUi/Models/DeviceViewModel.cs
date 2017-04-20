@@ -11,7 +11,9 @@ namespace EDeviceClaims.WebUi.Models
             PolicyNumber = device.Number;
             SerialNumber = device.SerialNumber;
             Name = device.DeviceName;
-            PendingClaim = device.PendingClaim;
+            
+            // may need to change based on what happens with DeviceDomainModel
+            CurrentClaim = device.CurrentClaim;
         }
 
         public string Name { get; set; }
@@ -22,6 +24,12 @@ namespace EDeviceClaims.WebUi.Models
 
         public Guid PolicyId { get; set; }
 
-        public bool PendingClaim { get; set; }
+        // may need to change based on what happens with DeviceDomainModel
+        public ClaimDomainModel MostCurrentClaim { get; set; }
+        // may need to change based on what happens with DeviceDomainModel
+        public bool HasExistingClaim()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

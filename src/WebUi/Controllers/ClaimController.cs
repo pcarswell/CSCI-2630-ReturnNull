@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using EDeviceClaims.Domain.Models;
 using EDeviceClaims.Domain.Services;
 using EDeviceClaims.WebUi.Models;
 
@@ -9,22 +10,27 @@ namespace EDeviceClaims.WebUi.Controllers
     public class ClaimController : AppController
     {
         private IClaimService _claimService = new ClaimService();
-        
-        public ActionResult Open(Guid policyId)
-        {
-            var claimModel = _claimService.StartClaim(policyId);
-            var viewModel = new ClaimViewModel(claimModel);
 
-            return View("Open", viewModel);
+        public ActionResult StartClaim(Guid id)
+        {
+            var domainModel = _claimService.StartClaim(id);
+            var model = new ClaimViewModel(domainModel);
+            return View(model);
         }
 
-        public ActionResult Details(Guid policyId)
+        public ActionResult ViewClaim(Guid id)
         {
+            try
+            {
+                ClaimDomainModel claimModel = _claimService.GetById(id);
+                ClaimViewModel viewModel = new ClaimViewModel(claimModel);
 
-            var claimModel = _claimService.ViewClaim(policyId);
-            var viewModel = new ClaimViewModel(claimModel);
-
-            return View("Details", viewModel);
+                return View(viewModel);
+            }
+            catch (ArgumentException e)
+            {
+                return null;
+            }
         }
     }
 }
