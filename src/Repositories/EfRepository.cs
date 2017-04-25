@@ -32,7 +32,12 @@ namespace EDeviceClaims.Repositories
             ObjectSet.AddOrUpdate(entity);
             EfUnitOfWork.Commit();
         }
-        public void Delete(TEntity entity) { ObjectSet.Remove(entity); }
+
+        public void Delete(TEntity entity)
+        {
+            ObjectSet.Remove(entity);
+            EfUnitOfWork.Commit();
+        }
         public IList<TEntity> GetAll() { return ObjectSet.Select(o => o).ToList(); }
     }
 }
