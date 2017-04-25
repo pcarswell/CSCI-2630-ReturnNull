@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 using EDeviceClaims.Domain.Models;
+using System.Data.Entity.Core.Objects;
 
 namespace EDeviceClaims.WebUi.Models
 {
@@ -11,11 +14,12 @@ namespace EDeviceClaims.WebUi.Models
             PolicyNumber = device.Number;
             SerialNumber = device.SerialNumber;
             Name = device.DeviceName;
-            
-            // may need to change based on what happens with DeviceDomainModel
-            CurrentClaim = device.CurrentClaim;
+            HasExistingClaim = device.Claims.Any();
+
+            MostCurrentClaim = (device.Claims.Any()) ? new ClaimViewModel(device.Claims.First()) : null;
         }
 
+        
         public string Name { get; set; }
 
         public string SerialNumber { get; set; }
@@ -27,9 +31,6 @@ namespace EDeviceClaims.WebUi.Models
         // may need to change based on what happens with DeviceDomainModel
         public ClaimDomainModel MostCurrentClaim { get; set; }
         // may need to change based on what happens with DeviceDomainModel
-        public bool HasExistingClaim()
-        {
-            throw new NotImplementedException();
-        }
+        public bool HasExistingClaim { get; set; }
     }
 }

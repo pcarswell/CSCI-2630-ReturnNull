@@ -25,6 +25,8 @@ namespace EDeviceClaims.Interactors
 
         public ClaimEntity GetClaimById(Guid policyId)
         {
+            //Save a new claim using the claim repository
+            
             return Repo.GetByPolicyId(policyId);
         }
     }
