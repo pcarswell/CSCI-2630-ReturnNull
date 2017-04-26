@@ -11,8 +11,8 @@ namespace EDeviceClaims.Domain.Services
 
     public interface IClaimService
     {
-        ClaimDomainModel StartClaim(Guid policyId);
-        ClaimDomainModel ViewClaim(Guid policyId);
+        ClaimDomainModel StartClaim(Guid policyId); //This is just Id in the video...
+        ClaimDomainModel ViewClaim(Guid policyId); //This too
         ClaimDomainModel GetById(Guid id);
     }
 
@@ -30,7 +30,7 @@ namespace EDeviceClaims.Domain.Services
 
         private IGetClaimInteractor GetClaimInteractor
         {
-            get { return _getClaimInteractor ?? (_getClaimInteractor = new GetClaimInteractor()); }
+            get { return _getClaimInteractor ?? (_getClaimInteractor = new GetClaimInteractor()); } //Video 4b 18:00, named wrong
             set { _getClaimInteractor = value; }
         }
 
@@ -65,9 +65,10 @@ namespace EDeviceClaims.Domain.Services
 
         public ClaimDomainModel GetById(Guid id)
         {
-            var claim = GetClaimInteractor.GetClaimById(id);
+            var claim = GetClaimInteractor.Execute(id);
+            if(claim == null) throw new ArgumentException("Claim does not exist");
 
-            return new ClaimDomainModel(claim.Id);
+            return new ClaimDomainModel(claim);
         }
     }
 }

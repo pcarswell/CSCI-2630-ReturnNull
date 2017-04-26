@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -23,12 +23,12 @@ namespace EDeviceClaims.Interactors
 
         private IClaimRepository _repo;
 
+        public CreateClaimInteractor() { }
+
         public CreateClaimInteractor(IClaimRepository claimRepo)
         {
             _repo = claimRepo;
         }
-        
-        public CreateClaimInteractor() { }
 
         
         public ClaimEntity Excute(Guid id)

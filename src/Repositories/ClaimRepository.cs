@@ -10,24 +10,15 @@ namespace EDeviceClaims.Repositories
 {
     public interface IClaimRepository : IEfRepository<ClaimEntity, Guid>
     {
-        ClaimEntity GetByPolicyId(Guid policyId);
+        
     }
 
     public class ClaimRepository : EfRepository<ClaimEntity, Guid>, IClaimRepository
     {
-        public ClaimEntity GetByPolicyId(Guid policyId)
+        public ClaimRepository() : base(new EDeviceClaimsUnitOfWork())
         {
-
-            try // to find the first claim entry
-            {
-                return ObjectSet.FirstOrDefault(c => c.PolicyId == policyId);
-            }
-            catch (NullReferenceException)
-            {
-                //return a new claim if there aren't any
-                return new ClaimEntity();
-            }
-            
         }
+
+        public ClaimRepository(IEfUnitOfWork unitOfWork) : base(unitOfWork) { }
     }
 }

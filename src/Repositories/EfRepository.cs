@@ -24,7 +24,6 @@ namespace EDeviceClaims.Repositories
         {
             var result = ObjectSet.Add(entity);
             EfUnitOfWork.Commit();
-
             return result;
         }
         public void Update(TEntity entity)

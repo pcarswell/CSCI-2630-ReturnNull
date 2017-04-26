@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using EDeviceClaims.Entities;
 
@@ -29,7 +31,9 @@ namespace EDeviceClaims.Repositories
 
         public ICollection<Policy> GetByUserId(string userId)
         {
-            return ObjectSet.Where(p => p.UserId == userId).ToList();
+            return ObjectSet.Where(p => p.UserId == userId)
+                                    .Include( c => c.Claims)
+                                    .ToList();
         }
 
         public ICollection<Policy> GetByEmailAddress(string email)
