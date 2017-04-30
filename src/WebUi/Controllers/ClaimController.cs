@@ -11,10 +11,10 @@ namespace EDeviceClaims.WebUi.Controllers
     {
         private IClaimService _claimService = new ClaimService();
 
-        public ActionResult StartClaim(Guid id)
+        public ActionResult StartClaim(Guid id) //Its just "Start" in the video...
         {
-            var domainModel = _claimService.StartClaim(id);
-            var model = new ClaimViewModel(domainModel);
+            var claimDomainModel = _claimService.StartClaim(id);
+            var model = new ClaimViewModel(claimDomainModel);
             return View(model);
         }
 

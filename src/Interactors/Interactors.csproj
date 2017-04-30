@@ -57,9 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GetClaimInteractor.cs" />
+    <Compile Include="CreateClaimInteractor.cs" />
     <Compile Include="GetPolicyInteractor.cs" />
     <Compile Include="GetUserInteractor.cs" />
+    <Compile Include="IGetClaimInteractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdatePolicyInteractor.cs" />
   </ItemGroup>
