@@ -10,8 +10,8 @@ namespace EDeviceClaims.Domain.Services
 {
     public interface IPolicyService
     {
-        IEnumerable<PolicyDomainModel> GetByUserId(string userId);
-        PolicyDomainModel GetById(Guid policyId);
+        IEnumerable<PolicyWithClaimsDomainModel> GetByUserId(string userId);
+        PolicyWithClaimsDomainModel GetById(Guid policyId);
         void AssociateExistingDevices(string userId);
     }
 
@@ -42,20 +42,20 @@ namespace EDeviceClaims.Domain.Services
         }
 
 
-        public IEnumerable<PolicyDomainModel> GetByUserId(string userId)
+        public IEnumerable<PolicyWithClaimsDomainModel> GetByUserId(string userId)
         {
             var policyEntities = GetPolicyInteractor.GetByUserId(userId);
 
-            return policyEntities.Select(policyEntity => new PolicyDomainModel(policyEntity)).ToList();
+            return policyEntities.Select(policyEntity => new PolicyWithClaimsDomainModel(policyEntity)).ToList();
         }
 
-        public PolicyDomainModel GetById(Guid policyId)
+        public PolicyWithClaimsDomainModel GetById(Guid policyId)
         {
             var entity = GetPolicyInteractor.GetById(policyId);
 
             if (entity == null) return null;
             
-            return new PolicyDomainModel(entity);
+            return new PolicyWithClaimsDomainModel(entity);
 
         }
 

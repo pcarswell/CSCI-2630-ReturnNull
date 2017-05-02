@@ -2,19 +2,20 @@
 using System.Data.Entity.Core.Objects;
 using System.Linq;
 using EDeviceClaims.Domain.Models;
+using EDeviceClaims.Entities;
 
 namespace EDeviceClaims.WebUi.Models
 {
     public class DeviceViewModel
     {
-        public DeviceViewModel(PolicyDomainModel device)
+        public DeviceViewModel(PolicyWithClaimsDomainModel device)
         {
             PolicyId = device.Id;
             PolicyNumber = device.Number;
             SerialNumber = device.SerialNumber;
             Name = device.DeviceName;
 
-            //MostCurrentClaim = (device.Claims.Any()) ? new ClaimViewModel(device.Claims.First()) : null; //This doesn't work for some reason?!?
+            MostCurrentClaim = GetCurrentClaim(device);
         }
 
         public ClaimViewModel MostCurrentClaim { get; set; }
@@ -29,7 +30,40 @@ namespace EDeviceClaims.WebUi.Models
 
         public bool ShowViewClaimButton()
         {
-           return MostCurrentClaim != null;
+            if (MostCurrentClaim == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private ClaimDomainModel CheckForCurrentClaim(PolicyWithClaimsDomainModel device)
+        {
+            var claimsList = device.Claims;
+
+            if (claimsList.Any())
+            {
+                return claimsList.First();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private ClaimViewModel GetCurrentClaim(PolicyWithClaimsDomainModel device)
+        {
+            var currentClaim = CheckForCurrentClaim(device);
+
+            if (currentClaim != null)
+            {
+                return new ClaimViewModel(currentClaim);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

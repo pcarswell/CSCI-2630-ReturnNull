@@ -11,7 +11,7 @@ namespace EDeviceClaims.WebUi.Controllers
     {
         private IClaimService _claimService = new ClaimService();
 
-        public ActionResult StartClaim(Guid id) //Its just "Start" in the video...
+        public ActionResult StartClaim(Guid id) //Its just "Start" in the video... //The job is working code, not copying the video--this is even more legible
         {
             var claimDomainModel = _claimService.StartClaim(id);
             var model = new ClaimViewModel(claimDomainModel);

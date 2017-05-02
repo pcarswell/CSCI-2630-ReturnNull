@@ -1,6 +1,36 @@
 ﻿@model EDeviceClaims.WebUi.Models.ClaimViewModel
 
-<h2>View Claim</h2>
+<h2>Claim ID @Model.Id</h2>
+
+<div>
+    <h4>Device Info</h4>
+    Device: @Model.DeviceName<br/>
+    Serial: @Model.SerialNumber<br />
+    Policy: @Model.PolicyNumber
+</div>
+
+<div>
+    <h4>Notes</h4>
+    
+    @if (Model.Notes.Any())
+    {
+        foreach (var note in Model.Notes)
+        {
+            <div>
+                <span>@note.Content</span>
+                <span>@note.WhenCreated.GetValueOrDefault()</span>
+                <span>@note.CreatedBy</span>
+            </div>
+        }
+    }
+    else
+    {
+        <span>No Notes on File</span>
+    }
+    
+</div>
+
+@*<h2>View Claim</h2>
 
 <div>
     <table class="table" id="claimDetailsTable">
@@ -8,7 +38,6 @@
             <th>@Html.Label("Claim ID")</th>
         </tr>
         <tr></tr>
-        <tr>@Model.Status</tr>
         <tr>@Model.Id</tr>
         <tr>@Model.DeviceName</tr>
         <tr>@Model.PolicyNumber</tr>
@@ -25,4 +54,4 @@
             </div>
         }
     </div>
-</div>
+</div>*@
