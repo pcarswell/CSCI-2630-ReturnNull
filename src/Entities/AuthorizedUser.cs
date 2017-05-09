@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using EDeviceClaims.Core;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace EDeviceClaims.Entities
 {
-  public class AuthorizedUser : IdentityUser
+  public class AuthorizedUser : IdentityUser, IEntity<string>
   {
     public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AuthorizedUser> manager)
     {
