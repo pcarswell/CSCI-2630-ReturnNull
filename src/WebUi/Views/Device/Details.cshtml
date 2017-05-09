@@ -1,13 +1,14 @@
+﻿
+
 @model EDeviceClaims.WebUi.Models.DeviceViewModel
-
-
-<h2 style="text-align: center;">@Model.Name Details</h2>
-@Html.Partial("_deviceDetailsTable",Model)
+    
+<h2 style="text-align: center;">Model.Name Details</h2>
+@Html.Partial("_deviceDetailsTable", Model)
 
 <div style="text-align: center; padding-top: 25px;">
     @Html.Partial("_claimButton", Model)
 
-    @Html.ActionLink("Back to Devices", "Index", "Device", routeValues: null, htmlAttributes: new {Class = "btn btn-danger btn-lg"})
+    @Html.ActionLink("Back to Devices", "Index", "Device", routeValues: null, htmlAttributes: new { Class = "btn btn-danger btn-lg" })
 
 
 
@@ -53,18 +54,7 @@
     th, td {
         padding: 15px;
     }
-</style> 
-     
-
-
-
-
-
-
-
-
-
-
+</style>
 
 
 @section scripts
